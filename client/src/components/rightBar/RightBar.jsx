@@ -16,11 +16,13 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/authContext";
 import Update from "../../components/update/Update";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RightBar = (userId) => {
   const [lstUser, setLstUser] = useState([]);
   const [currentUser, setCurrentUser] = useState(userId.userId);
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log(userId);
     fetchDataUser();
@@ -66,6 +68,10 @@ const RightBar = (userId) => {
     mutation.mutate(relationshipData.includes(userId.userId));
   };
 
+  // const handleClickUser = () => {
+  //   window.location.reload();
+  // };
+
   return (
     <div className="rightBar">
       <div className="container">
@@ -73,15 +79,20 @@ const RightBar = (userId) => {
           <span>Suggestions For You</span>
           {lstUser.map((user, index) => (
             <div className="user" key={index}>
-              <Link
+              {/* <Link
                 to={`/profile/${user.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              > */}
+              <a
+                href={`/profile/${user.id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <div className="userInfo">
                   <img src={"/upload/" + user.profilePic} alt="" />
                   <span>{user.username}</span>
                 </div>
-              </Link>
+              </a>
+              {/* </Link> */}
 
               <div className="buttons">
                 <button onClick={handleFollow}>

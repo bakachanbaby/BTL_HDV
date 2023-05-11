@@ -9,10 +9,11 @@
     overflow: scroll;
     background-color: themed("bgSoft");
 
-    @include mobile{
+    @include mobile {
       display: none;
     }
-    @include tablet{
+
+    @include tablet {
       display: none;
     }
 
@@ -46,6 +47,7 @@
             align-items: center;
             gap: 20px;
             position: relative;
+            cursor: pointer;
 
             img {
               width: 40px;
